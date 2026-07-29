@@ -1,0 +1,69 @@
+<script>
+
+const sRank = [
+"Pure Vanilla Cookie",
+"Hollyberry Cookie",
+"Dark Cacao Cookie",
+"Golden Cheese Cookie",
+"White Lily Cookie",
+"Black Pearl Cookie",
+"Moonlight Cookie",
+"Crimson Coral Cookie",
+"Stormbringer Cookie",
+"Wind Archer Cookie"
+];
+
+const others = [
+"GingerBrave",
+"Strawberry Cookie",
+"Cherry Cookie",
+"Carrot Cookie",
+"Ninja Cookie",
+"Wizard Cookie",
+"Knight Cookie",
+"Beet Cookie",
+"Avocado Cookie",
+"Blackberry Cookie",
+"Custard Cookie III",
+"Onion Cookie",
+"Pancake Cookie",
+"Clover Cookie",
+"Muscle Cookie"
+];
+
+let used = false;
+
+function randomItem(arr){
+    return arr[Math.floor(Math.random()*arr.length)];
+}
+
+function roll(){
+
+    if(used){
+        alert("You can only draw once!");
+        return;
+    }
+
+    used = true;
+
+    let r = Math.random();
+    let result = "";
+
+    if(r < 0.45){
+
+        result = "🥔 Mashed Potato Cookie";
+
+    }else if(r < 0.75){
+
+        result = "⭐ " + randomItem(sRank);
+
+    }else{
+
+        result = "🍪 " + randomItem(others);
+
+    }
+
+    document.getElementById("result").innerHTML = result;
+
+}
+</script>
