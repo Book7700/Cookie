@@ -1,6 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Cookie Random Challenge</title>
+
+<style>
+body{
+margin:0;
+font-family:Arial,sans-serif;
+background:linear-gradient(135deg,#46178f,#7d43d8);
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+}
+
+.box{
+background:white;
+width:420px;
+max-width:90%;
+padding:35px;
+border-radius:20px;
+text-align:center;
+box-shadow:0 15px 40px rgba(0,0,0,.25);
+}
+
+h1{
+margin-top:0;
+color:#46178f;
+}
+
+button{
+background:#00C853;
+color:white;
+border:none;
+padding:15px 35px;
+font-size:22px;
+border-radius:12px;
+cursor:pointer;
+transition:.2s;
+}
+
+button:hover{
+transform:scale(1.05);
+}
+
+#loading{
+margin-top:30px;
+font-size:22px;
+display:none;
+}
+
+#result{
+margin-top:35px;
+font-size:34px;
+font-weight:bold;
+min-height:60px;
+}
+
+.s{
+color:#FFD700;
+}
+
+.mashed{
+color:#ff5722;
+}
+
+.other{
+color:#2196F3;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="box">
+
+<h1>🍪 Cookie Random</h1>
+
+<p>Press the button to draw your Cookie!</p>
+
+<button onclick="roll()">DRAW</button>
+
+<div id="loading">
+🎲 Drawing...
+</div>
+
+<div id="result"></div>
+
+</div>
+
 <script>
 
-const sRank = [
+const sRank=[
 "Pure Vanilla Cookie",
 "Hollyberry Cookie",
 "Dark Cacao Cookie",
@@ -13,7 +108,7 @@ const sRank = [
 "Wind Archer Cookie"
 ];
 
-const others = [
+const others=[
 "GingerBrave",
 "Strawberry Cookie",
 "Cherry Cookie",
@@ -31,39 +126,51 @@ const others = [
 "Muscle Cookie"
 ];
 
-let used = false;
+let used=false;
 
 function randomItem(arr){
-    return arr[Math.floor(Math.random()*arr.length)];
+return arr[Math.floor(Math.random()*arr.length)];
 }
 
 function roll(){
 
-    if(used){
-        alert("You can only draw once!");
-        return;
-    }
+if(used){
+alert("You can only draw once!");
+return;
+}
 
-    used = true;
+used=true;
 
-    let r = Math.random();
-    let result = "";
+document.getElementById("loading").style.display="block";
 
-    if(r < 0.45){
+setTimeout(function(){
 
-        result = "🥔 Mashed Potato Cookie";
+document.getElementById("loading").style.display="none";
 
-    }else if(r < 0.75){
+let r=Math.random();
 
-        result = "⭐ " + randomItem(sRank);
+if(r<0.45){
 
-    }else{
+document.getElementById("result").innerHTML=
+'<span class="mashed">🥔 Mashed Potato Cookie</span>';
 
-        result = "🍪 " + randomItem(others);
+}else if(r<0.75){
 
-    }
+document.getElementById("result").innerHTML=
+'<span class="s">⭐ '+randomItem(sRank)+'</span>';
 
-    document.getElementById("result").innerHTML = result;
+}else{
+
+document.getElementById("result").innerHTML=
+'<span class="other">🍪 '+randomItem(others)+'</span>';
 
 }
+
+},2500);
+
+}
+
 </script>
+
+</body>
+</html>
